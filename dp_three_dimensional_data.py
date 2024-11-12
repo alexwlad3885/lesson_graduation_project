@@ -52,11 +52,13 @@ ax_2 = fig_2.add_subplot(projection='3d')
 y = len(locality)
 palette_color = sns.color_palette('pastel', y)
 for i, row in enumerate(mas):
-    ax_2.bar(month_list, row, zs=i, zdir='y', width=0.6, bottom=0, alpha=0.8, color=np.array(palette_color[i]))
+    ax_2.bar(month_list, row, zs=i, zdir='y', width=0.6, bottom=0, alpha=0.8,
+             color=np.array(palette_color[i]))
 ax_2.set_xlabel('')
 ax_2.set_ylabel('город')
 ax_2.set_zlabel('заболевшие')
-ax_2.set_title('График построен с помощью библиотеки Seaborn', loc='center', fontsize=14)
+ax_2.set_title('График построен с помощью библиотеки Seaborn', loc='center',
+               fontsize=14)
 fig_2.legend(labels=locality, loc='center left')
 
 time_end_2 = datetime.now()
@@ -65,15 +67,12 @@ td_2 = pd.Timedelta(time_res_2)
 
 fig_2.show()
 # график построен с помощью библиотеки Plotly
-
 time_start_3 = datetime.now()
 
 z = mas
 sh_0, sh_1 = z.shape
 x, y = np.linspace(0, sh_0, sh_0), np.linspace(0, sh_1, sh_1)
 layout = go.Layout(showlegend=True)
-
-
 fig_3 = go.Figure(data=[go.Surface(z=z, x=x, y=y)], layout=layout)
 fig_3.update_layout(title='график построен\n'
                     'с помощью библиотеки\n'
@@ -87,7 +86,6 @@ fig_3.update_layout(title='график построен\n'
                     width=800, height=800,
                     margin=dict(l=65, r=50, b=65, t=90))
 fig_3.update_layout(title={'y': 0.85, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'})
-
 
 time_end_3 = datetime.now()
 time_res_3 = time_end_3 - time_start_3
@@ -105,7 +103,8 @@ for i in range(len(libr)):
               bbox=dict(facecolor='red', alpha=.8))
 ax_4.set(title='сравнение времени построения графиков 3D с помощью разных библиотек',
          yticklabels=[])
-ax_4.set_xticklabels(libr, rotation=45)
+ax_4.set_xticks(libr)
+ax_4.set_xticklabels(labels=libr, rotation=45)
 ax_4.set_ylabel('')
 ax_4.autoscale()
 

@@ -1,22 +1,25 @@
 from matplotlib import pyplot as plt
 import pandas as pd
-from datetime import datetime
 import seaborn as sns
 import plotly.express as px
+from datetime import datetime
 
 
 df = pd.read_csv('train.csv', usecols=['Sex'])
 count_sex = df.groupby(['Sex'])['Sex'].count()
+sex = ['женщины', 'мужчины']
 
 
 fig, axes = plt.subplots(1, 3)
 fig.set_size_inches(10.5, 6)
 fig.set_tight_layout(True)
 fig.show()
-sex = ['женщины', 'мужчины']
+
+
 # график построен с помощью библиотеки Matplotlib
 
 time_start_1 = datetime.now()
+
 
 axes[0].pie(count_sex.values, labels=sex, explode=(0.1, 0.0), autopct='%1.2f%%')
 axes[0].set(title='график построен\n'
@@ -52,9 +55,9 @@ fig_ = px.pie(count_sex,
                     'с помощью библиотеки\n'
                     'Plotly\n',
               labels={'female': 'женщины', 'male': 'мужчины'},
-              width=400, height=400)
+              width=600, height=600)
 fig_.update_layout(title={
-        "y": 1,
+        "y": 0.9,
         "x": 0.5,
         "xanchor": "center",
         "yanchor": "top"
